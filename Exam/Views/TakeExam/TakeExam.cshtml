@@ -1,0 +1,114 @@
+﻿@model Exam.Models.ExamViewModel
+
+@{
+    Layout = "_LayoutUser";
+    ViewData["Title"] = "TakeExam";
+}
+
+<h1 id="deneme">@(Model.Name)</h1>
+
+<h6>@(Model.Text)</h6>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="TakeExam">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Id" type="hidden" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+           
+            <div class="row">
+                <div class="col-md-6">
+                    @for (int i = 0; i < Exam.Models.ExamDefinition.QuestionCount; i++)
+                    {
+                        if (i % 2 == 1)
+                            continue;
+                        <div class="form-group">
+                            <input asp-for=@Model.Questions[i].Id type="hidden" class="form-control" />
+                            <span asp-validation-for=@Model.Questions[i].Id class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <h4>@((i + 1).ToString() + ")" + Model.Questions[i].Text)</h4>
+                        </div>
+                        <div class="form-group">
+                            @for (int j = 0; j < Exam.Models.ExamDefinition.ChoiceCount; j++)
+                            {
+                                <input asp-for=@Model.Answers[i].QuestionId type="hidden" class="form-control" />
+                                <input asp-for=@Model.Answers[i].SelectedChoice type="radio" value=@j ) id=@("rb"+i) name=@("rb"+i) />
+                                <span id=@("rt"+(i*10+j))>
+                                    @((char)('A'+j) +": " + Model.Questions[i].Choices[j].Text)
+                                </span>
+                                <br />
+                                <span asp-validation-for=@Model.Questions[i].Choices[j].Text class="text-danger"></span>
+                            }
+                        </div>
+
+                    }
+                </div>
+
+                <div class="col-md-6">
+                    @for (int i = 0; i < Exam.Models.ExamDefinition.QuestionCount; i++)
+                    {
+                        if (i % 2 == 0)
+                            continue;
+                        <div class="form-group">
+                            <input asp-for=@Model.Questions[i].Id type="hidden" class="form-control" />
+                            <span asp-validation-for=@Model.Questions[i].Id class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <h4>@((i + 1).ToString() + ")" + Model.Questions[i].Text)</h4>
+                        </div>
+                        <div class="form-group">
+                            @for (int j = 0; j < Exam.Models.ExamDefinition.ChoiceCount; j++)
+                            {
+                                <input asp-for=@Model.Answers[i].QuestionId type="hidden" class="form-control" />
+                                <input asp-for=@Model.Answers[i].SelectedChoice type="radio" value=@j ) id=@("rb"+i) name=@("rb"+i) />
+                                <span id=@("rt"+(i*10+j))>
+                                    @((char)('A'+j) +": " + Model.Questions[i].Choices[j].Text)
+                                </span>
+                                <br />
+                                <span asp-validation-for=@Model.Questions[i].Choices[j].Text class="text-danger"></span>
+                            }
+                        </div>
+
+                    }
+                </div>
+
+
+            </div>
+           
+            <div class="form-group">
+                <input value="Sınavı Tamamla" class="btn btn-primary" onclick="onClick()" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ListExams">Listeye Geri Dön</a>
+</div>
+
+@section Scripts
+    {
+    <script>
+        function onClick() {
+            var examId = $("#Id").val();
+
+            $.get('/TakeExam/ExamResult', { examId: examId }, function (res, status) {
+                if (res.success == true)
+                    for (var i = 0; i < 4; i++) {
+                        var userAnswer = $("input[type='radio'][name='rb" + i + "']:checked").val();
+                        //console.log("rb" + i + " status:" + userAnswer);
+                        //console.log("aw" + i + " status:" + res.data[i]);
+                        if ($("input[type='radio'][name='rb" + i + "']:checked").val() != res.data[i]) {
+                            $("#rt" + (i * 10 + parseInt(userAnswer))).css({ 'background-color': 'red' });
+                        }
+                        else {
+                            $("#rt" + (i * 10 + res.data[i])).css({ 'background-color': 'green' });
+                        }
+                    }
+            });
+        }
+    </script>
+}

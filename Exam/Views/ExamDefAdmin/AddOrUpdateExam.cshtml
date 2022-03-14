@@ -1,0 +1,117 @@
+﻿@model Exam.Models.ExamDefAdminViewModel
+
+@{
+    ViewData["Title"] = "Sınav Ekle/Güncelle";
+}
+
+<h3>Sınav Tanımlama</h3>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrUpdateExam">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Id" type="hidden" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            @if (ViewBag.Id > 0)
+            {
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <select asp-for="Name"
+                            asp-items="@(new SelectList(Model.NewsItems, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))">
+                        <option>Seçiniz</option>
+                    </select>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            }
+            <select asp-for="Link" style="display:none"
+                    asp-items="@(new SelectList(Model.Links, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))">
+                <option>Seçiniz </option>
+            </select>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label"></label>
+                <textarea asp-for="Text" class="form-control"></textarea>
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            @for (int i = 0; i < Exam.Models.ExamDefinition.QuestionCount; i++)
+            {
+                <div class="form-group">
+                    <input asp-for=@Model.Questions[i].Id type="hidden" class="form-control" />
+                    <span asp-validation-for=@Model.Questions[i].Id class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <h4 for="Html">@("Soru " + (i+1).ToString())</h4>
+                    <input asp-for=@Model.Questions[i].Text class="form-control" />
+                    <span asp-validation-for=@Model.Questions[i].Text class="text-danger"></span>
+                </div>
+                for (int j = 0; j < Exam.Models.ExamDefinition.ChoiceCount; j++)
+                {
+                    <div class="form-group">
+                        <input asp-for=@Model.Questions[i].Choices[j].Id type="hidden" class="form-control" />
+                        <span asp-validation-for=@Model.Questions[i].Choices[j].Id class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="Html">@((char)('A'+j))</label>
+                        <input asp-for=@Model.Questions[i].Choices[j].Text class="form-control" />
+                        <span asp-validation-for=@Model.Questions[i].Choices[j].Text class="text-danger"></span>
+                    </div>
+                }
+                <div class="form-group">
+                    <label for="Html">Doğru Cevap</label>
+                    <select asp-for=@Model.Questions[i].CorrectChoiceId
+                            asp-items="@(new SelectList(Model.ChoiceTypes, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-control">
+                        <option>Seçiniz</option>
+                    </select>
+                    <span asp-validation-for=@Model.Questions[i].CorrectChoiceId class="text-danger"></span>
+                </div>
+            }
+            @if (ViewBag.Id > 0)
+            {
+                <div class="form-group">
+                    <input type="submit" value="Güncelle" class="btn btn-primary" />
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <input type="submit" value="Kaydet" class="btn btn-primary" />
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ListExams">Listeye Geri Dön</a>
+</div>
+
+@if (ViewBag.Id == 0)
+{
+    @section Scripts
+    {
+        <script>
+            $(document).ready(function () {
+                $("#Name").change(function () {
+                    var index = document.getElementById("Name").selectedIndex;
+
+                    //set "Link" dropdown's selectedIndex value
+                    $("#Link").prop("selectedIndex", index).val();
+
+                    var val = $("#Link option:selected").val();
+                    $.get('/ExamDefAdmin/GetLinkContent', { link: val }, function (data) {
+                        $("#Text").val(data);
+                    });
+                });
+            });
+        </script>
+    }
+}
