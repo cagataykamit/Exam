@@ -1,6 +1,6 @@
 # Exam
-## Projeyi çalıştırabilmek için
-Projeyi indirdikten sonra Exam.sln'ye sağ click yapıp Open with Microsoft Visual Studio 2019'a tıklamanız gerekmektedir.
+
+Projeyi Visual Studio 2019'da yapılmıştır.
 
 # Programa giriş yapmak için
 ## Admin olarak
