@@ -1,6 +1,6 @@
 # Exam
 
-Projeyi Visual Studio 2019'da yapılmıştır.
+Projeyi Visual Studio 2019'da geliştirdim.
 
 # Programa giriş yapmak için
 ## Admin olarak
