@@ -1,10 +1,6 @@
 # Exam
 ## Projeyi çalıştırabilmek için
-1-Yerel Disk(C:)'de examdb adında bir klasör oluşturun.
 
-2-Bu klasörün içinde examdb.db adında SQLite dosyası oluşturun.
-
-3-Daha sonra projeyi Visual Studio 19'da açıp  update-database yapmalısınız.
 
 # Programa giriş yapmak için
 ## Admin olarak
