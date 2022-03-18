@@ -25,7 +25,7 @@
             else
             {
                 <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
+                    <label asp-for="Name" class="control-label"></label><br />
                     <select asp-for="Name"
                             asp-items="@(new SelectList(Model.NewsItems, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))">
                         <option>Seçiniz</option>
@@ -65,7 +65,7 @@
                         <span asp-validation-for=@Model.Questions[i].Choices[j].Text class="text-danger"></span>
                     </div>
                 }
-                <div class="form-group">
+                <div class="col-md-4">
                     <label for="Html">Doğru Cevap</label>
                     <select asp-for=@Model.Questions[i].CorrectChoiceId
                             asp-items="@(new SelectList(Model.ChoiceTypes, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-control">
@@ -73,6 +73,7 @@
                     </select>
                     <span asp-validation-for=@Model.Questions[i].CorrectChoiceId class="text-danger"></span>
                 </div>
+                <br />
             }
             @if (ViewBag.Id > 0)
             {
