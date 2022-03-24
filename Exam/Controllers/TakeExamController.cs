@@ -33,7 +33,7 @@ namespace Exam.Controllers
             ExamViewModel examViewModel = new ExamViewModel();
             if (examId > 0)
             {
-                ExamDefAdmin examDefAdmin = _examDefAdminRepository.GetExamById(examId);
+                ExamDefAdmin examDefAdmin = _examDefAdminRepository.GetById(examId);
                 examViewModel.Id = examDefAdmin.Id;
                 examViewModel.Name = examDefAdmin.Name;
                 examViewModel.Text = examDefAdmin.Text;
@@ -80,7 +80,7 @@ namespace Exam.Controllers
         [HttpPost]
         public IActionResult TakeExam(ExamViewModel examViewModel)
         {
-            ExamDefAdmin examDefAdmin = _examDefAdminRepository.GetExamById(examViewModel.Id);
+            ExamDefAdmin examDefAdmin = _examDefAdminRepository.GetById(examViewModel.Id);
             examViewModel.Questions = new List<QuestionDefAdminViewModel>();
             foreach (var question in examDefAdmin.Questions)
             {
@@ -93,7 +93,7 @@ namespace Exam.Controllers
         }
         public JsonResult ExamResult(int examId)
         {
-            ExamDefAdmin examDefAdmin = _examDefAdminRepository.GetExamById(examId);
+            ExamDefAdmin examDefAdmin = _examDefAdminRepository.GetById(examId);
             List<int> correctAnswers = new List<int>();
             foreach (var question in examDefAdmin.Questions)
                 correctAnswers.Add(question.CorrectChoiceId);

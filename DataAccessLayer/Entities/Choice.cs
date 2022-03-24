@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExamDataAccessLayer.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Entities
 {
-    public class Choice
+    public class Choice : BaseEntity
     {
-        public int Id { get; set; }
         public int Order { get; set; }
         public string Text { get; set; }
         public int QuestionId { get; set; }

@@ -24,7 +24,7 @@ namespace Exam.Controllers
         public IActionResult ListChoices()
         {
             List<ChoiceViewModel> vmChoices = new List<ChoiceViewModel>();
-            var choices = _choiceRepository.ListChoices();
+            var choices = _choiceRepository.List();
             foreach (var choice in choices)
             {
                 ChoiceViewModel choiceViewModel = new ChoiceViewModel()
@@ -43,7 +43,7 @@ namespace Exam.Controllers
             ChoiceViewModel choiceViewModel = new ChoiceViewModel();
             if (id > 0)
             {
-                Choice choice = _choiceRepository.GetChoiceById(id);
+                Choice choice = _choiceRepository.GetById(id);
                 choiceViewModel.Id = choice.Id;
                 choiceViewModel.Text = choice.Text;
                 choiceViewModel.QuestionId = questionId > 0 ? questionId : choice.QuestionId;
@@ -59,7 +59,7 @@ namespace Exam.Controllers
             choice.QuestionId = choiceViewModel.QuestionId;
             choice.Text = choiceViewModel.Text;
 
-            _choiceRepository.AddOrUpdateChoice(choice);
+            _choiceRepository.AddOrUpdate(choice);
             return RedirectToAction("ListChoices");
         }
 

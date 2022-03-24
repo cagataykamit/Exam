@@ -26,7 +26,7 @@ namespace Exam.Controllers
         
         public IActionResult ListExams()
         {
-            List<ExamDefAdmin> exams = _examDefAdminRepository.GetExams();
+            List<ExamDefAdmin> exams = _examDefAdminRepository.List();
             List<ExamDefAdminViewModel> vmExams = new List<ExamDefAdminViewModel>();
 
             foreach (var exam in exams)
@@ -86,7 +86,7 @@ namespace Exam.Controllers
                 examDefAdmin.Questions.Add(question);
             }
 
-            int savedId = _examDefAdminRepository.InsertOrUpdate(examDefAdmin);
+            int savedId = _examDefAdminRepository.AddOrUpdate(examDefAdmin);
             return RedirectToAction("AddOrUpdateExam", new { id = savedId });
         }
 
@@ -96,7 +96,7 @@ namespace Exam.Controllers
             
             if (id > 0)
             {
-                ExamDefAdmin examDefAdmin = _examDefAdminRepository.GetExamById(id);
+                ExamDefAdmin examDefAdmin = _examDefAdminRepository.GetById(id);
                 examDefAdminViewModel.Id = examDefAdmin.Id;
                 examDefAdminViewModel.Name = examDefAdmin.Name;
                 examDefAdminViewModel.Text = examDefAdmin.Text;

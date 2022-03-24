@@ -23,7 +23,7 @@ namespace Exam.Controllers
 
         public IActionResult ListQuestions()
         {
-            List<Question> questions = _questionRepository.ListQuestions();
+            List<Question> questions = _questionRepository.List();
             List<QuestionDefAdminViewModel> vmQuestions = new List<QuestionDefAdminViewModel>();
 
             foreach (var question in questions)
@@ -49,7 +49,7 @@ namespace Exam.Controllers
             question.ExamId = questionViewModel.ExamId;
             question.Text = questionViewModel.Text;
             
-            _questionRepository.AddOrUpdateQuestion(question);
+            _questionRepository.AddOrUpdate(question);
             return RedirectToAction("ListQuestions");
         }
 
@@ -58,7 +58,7 @@ namespace Exam.Controllers
             QuestionDefAdminViewModel questionViewModel = new QuestionDefAdminViewModel();
             if (id > 0)
             {
-                Question question = _questionRepository.GetQuestionById(id);
+                Question question = _questionRepository.GetById(id);
                 questionViewModel.Id = question.Id;
                 questionViewModel.ExamId = examId > 0 ? examId : question.ExamId;
                 questionViewModel.Text = question.Text;

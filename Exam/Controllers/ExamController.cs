@@ -23,7 +23,7 @@ namespace Exam.Controllers
 
         public IActionResult ListExams()
         {
-            List<ExamDefAdmin> exams = _examDefAdminRepository.GetExams();
+            List<ExamDefAdmin> exams = _examDefAdminRepository.List();
             List<ExamDefAdminViewModel> vmExams = new List<ExamDefAdminViewModel>();
 
             foreach (var exam in exams)

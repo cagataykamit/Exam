@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Entities;
+using ExamDataAccessLayer.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,24 +8,21 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    public class UserRepository
+    public class UserRepository : BaseRepository<User>
     {
-        ExamDbContext _examDbContext;
-
-        public UserRepository(ExamDbContext examDbContext)
+        public UserRepository(ExamDbContext ctx) : base(ctx)
         {
-            _examDbContext = examDbContext;
         }
 
         public User GetExamByIdAndPassword(int id, string password)
         {
-            User result = _examDbContext.Users.FirstOrDefault(c => c.Id == id && c.Password == password);
+            User result = _ctx.Users.FirstOrDefault(c => c.Id == id && c.Password == password);
             return result;
         }
 
         public User GetUser(User user)
         {
-            var result = _examDbContext.Users.FirstOrDefault(x => x.Password == user.Password && x.UserName == user.UserName);
+            var result = _ctx.Users.FirstOrDefault(x => x.Password == user.Password && x.UserName == user.UserName);
             return result;
         }
     }

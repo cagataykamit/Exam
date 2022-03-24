@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExamDataAccessLayer.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Entities
 {
-    public class Answer
+    public class Answer : BaseEntity
     {
-        public int Id { get; set; }
         public int QuestionId { get; set; }
         public int SelectedChoiceId { get; set; }
         [ForeignKey("QuestionId")]
