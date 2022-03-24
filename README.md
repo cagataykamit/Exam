@@ -28,7 +28,12 @@ KullanıcıAdı : user2
 - Login Ekanı
 ![Login](https://imgyukle.com/f/2022/03/24/E8UFsf.png)
 
+-Admin Sınav Listesi
+![AdminExamList](https://imgyukle.com/f/2022/03/24/E8U7fR.png)
+
 - Sınav Tanımlama
-![ExamAdd](https://imgyukle.com/i/E8U0zc)
+![ExamAdd](https://imgyukle.com/f/2022/03/24/E8U0zc.png)
+
+
 
 
