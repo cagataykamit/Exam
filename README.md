@@ -28,4 +28,7 @@ KullanıcıAdı : user2
 - Login Ekanı
 ![Login](https://imgyukle.com/f/2022/03/24/E8UFsf.png)
 
+- Sınav Tanımlama
+![ExamAdd](https://imgyukle.com/i/E8U0zc)
+
 
