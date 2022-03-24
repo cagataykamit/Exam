@@ -1,6 +1,12 @@
 # Exam
 
 Projeyi Visual Studio 2019'da geliştirdim.
+Database için SQLite kullandım.
+Login Ekranı İçin Html Template kullandım.
+Sınav sorularını oluşturmak için gelen haber başlıkları wired.com üzerinden gelen son 5 haberdir.
+Haberin içeriği Ajax ile bir altta bulunan texte sayfa yenilenmeden gelmektedir.
+Soruları cevapladıktan sonra doğru ve yanlış cevaplar Ajax ile sayfa yenilenmeden gösterilmektedir.
+
 
 # Programa giriş yapmak için
 ## Admin olarak
