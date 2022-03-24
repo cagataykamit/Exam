@@ -1,7 +1,7 @@
 # Exam
 
-Projeyi Visual Studio 2019'da geliştirdim.
-Database için SQLite kullandım.
+1. Projeyi Visual Studio 2019'da geliştirdim.
+2. Database için SQLite kullandım.
 Login Ekranı İçin Html Template kullandım.
 Sınav sorularını oluşturmak için gelen haber başlıkları wired.com üzerinden gelen son 5 haberdir.
 Haberin içeriği Ajax ile bir altta bulunan texte sayfa yenilenmeden gelmektedir.
