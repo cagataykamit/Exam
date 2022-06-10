@@ -23,22 +23,20 @@ KullanıcıAdı : user1
 KullanıcıAdı : user2 
 Şifre : 1234
 
-- Database Diagram
-![Database](https://imgyukle.com/f/2022/03/24/E8UwYt.png)
 - Login Ekanı
 ![Login](https://imgyukle.com/f/2022/06/10/VSeisq.png)
 
 - Admin Sınav Listesi
-![AdminExamList](https://imgyukle.com/f/2022/03/24/E8U7fR.png)
+![AdminExamList](https://imgyukle.com/f/2022/06/10/VSepV0.png)
 
 - Sınav Tanımlama
-![ExamAdd](https://imgyukle.com/f/2022/03/24/E8U0zc.png)
+![ExamAdd](https://imgyukle.com/f/2022/06/10/VSeDjv.png)
 
 - User Sınav Listesi
-![UserExamList](https://imgyukle.com/f/2022/03/24/E8UdSe.png)
+![UserExamList](https://imgyukle.com/f/2022/06/10/VSezYp.png)
 
 - User Cevap
-![UserAnswer](https://imgyukle.com/f/2022/03/24/E8WkMP.png)
+![UserAnswer](https://imgyukle.com/f/2022/06/10/VSe1zy.png)
 
 
 
