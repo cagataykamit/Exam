@@ -26,7 +26,7 @@ KullanıcıAdı : user2
 - Database Diagram
 ![Database](https://imgyukle.com/f/2022/03/24/E8UwYt.png)
 - Login Ekanı
-![Login](https://ibb.co/3sMs0MM)
+![Login]([url=https://ibb.co/BZnFhFR][img]https://i.ibb.co/7WkL3LF/S-nav-Listesi.png[/img][/url])
 
 - Admin Sınav Listesi
 ![AdminExamList](https://imgyukle.com/f/2022/03/24/E8U7fR.png)
